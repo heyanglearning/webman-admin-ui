@@ -34,26 +34,38 @@ axios.interceptors.response.use(
 	},
 	(error) => {
 		if (error.response) {
-			if (error.response.status == 404) {
-				ElNotification.error({
-					title: '请求错误',
+			console.log(error.response)
+			if (error.response.status == 400) {
+				ElNotification.warning({
+					title: '业务错误',
+					message: "Status:400，语义有误，当前请求无法被服务器理解"
+				});
+			} else if (error.response.status == 401) {
+				ElNotification.warning({
+					title: '认证失败',
+					message: "Status:401，当前请求需要用户验证 Authentication"
+				});
+			} else if (error.response.status == 403) {
+				ElNotification.warning({
+					title: '无权限调用接口',
+					message: "Status:403，服务器已经理解请求，但是拒绝执行它 Authorization"
+				});
+			} else if (error.response.status == 404) {
+				ElNotification.warning({
+					title: '接口路由不存在',
 					message: "Status:404，正在请求不存在的服务器记录！"
+				});
+			} else if (error.response.status == 422) {
+				ElNotification.warning({
+					title: '请求次数超过限定次数',
+					message: "Status:422，请求次数超过限流次数！"
 				});
 			} else if (error.response.status == 500) {
 				ElNotification.error({
 					title: '请求错误',
-					message: error.response.data.message || "Status:500，服务器发生错误！"
+					message: error.response.data.msg || "Status:500，服务器发生错误！"
 				});
-			} else if (error.response.status == 401) {
-				ElMessageBox.confirm('当前用户已被登出或无权限访问当前资源，请尝试重新登录后再操作。', '无权限访问', {
-					type: 'error',
-					closeOnClickModal: false,
-					center: true,
-					confirmButtonText: '重新登录'
-				}).then(() => {
-					router.replace({path: '/login'});
-				}).catch(() => {})
-			} else {
+			}   else {
 				ElNotification.error({
 					title: '请求错误',
 					message: error.response.data.message || `Status:${error.response.status}，未知错误！`
