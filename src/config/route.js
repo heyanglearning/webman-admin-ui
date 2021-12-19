@@ -26,15 +26,6 @@
 // 	}
 // ]
 
-const routes = [
-    {
-        name: "newPage",
-        path: "/newPage",
-        meta: {
-            title: "新的页面"
-        },
-        component: "newPage"
-    }
-]
+const routes = []
 
 export default routes;

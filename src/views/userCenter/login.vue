@@ -164,9 +164,10 @@
 				}
 				//获取token
 				var user = await this.$API.auth.token.post(data)
-				if(user.code == 200){
-					this.$TOOL.data.set("TOKEN", user.data.token)
-					this.$TOOL.data.set("USER_INFO", user.data.userInfo)
+				console.log(user);
+				if(user.code === 0){
+					this.$TOOL.data.set("TOKEN", user.data.access_token)
+					this.$TOOL.data.set("USER_INFO", user.data.user_info)
 				}else{
 					this.islogin = false
 					this.$message.warning(user.message)
@@ -179,8 +180,8 @@
 				}else{
 					menu = await this.$API.demo.menu.get()
 				}
-				if(menu.code == 200){
-					if(menu.data.menu.length==0){
+				if(menu.code === 0){
+					if(menu.data.menu.length == 0){
 						this.islogin = false
 						this.$alert("当前用户无任何菜单权限，请联系系统管理员", "无权限访问", {
 							type: 'error',
