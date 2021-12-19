@@ -13,7 +13,7 @@ const DEFAULT_CONFIG = {
 
 	//接口地址
 	// API_URL: "/api",
-	API_URL: "http://127.0.0.1:8787",
+	API_URL: "http://127.0.0.1:8888",
 
 	//请求超时
 	TIMEOUT: 10000,
