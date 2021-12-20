@@ -1,7 +1,7 @@
 export default {
 	login: {
-		slogan: '高性能 / 精致 / 优雅',
-		describe: '基于Vue3 + Element-Plus 的中后台前端解决方案。',
+		slogan: '高稳定性 / 超高性能 / 高复用 / 高扩展性 / 超级简单易用',
+		describe: '基于 Webamn + Vue3 + Element-Plus 的中后台前端解决方案。',
 		signInTitle: '用户登录',
 		rememberMe: '记住我',
 		forgetPassword: '忘记密码',
