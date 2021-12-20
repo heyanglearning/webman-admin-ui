@@ -141,7 +141,7 @@
 			}
 		},
 		created: function() {
-			this.$TOOL.data.remove("TOKEN")
+			this.$TOOL.data.remove("ACCESS_TOKEN")
 			this.$TOOL.data.remove("USER_INFO")
 			this.$TOOL.data.remove("MENU")
 			this.$TOOL.data.remove("PERMISSIONS")
@@ -166,7 +166,7 @@
 				var user = await this.$API.auth.token.post(data)
 				console.log(user);
 				if(user.code === 0){
-					this.$TOOL.data.set("TOKEN", user.data.access_token)
+					this.$TOOL.data.set("ACCESS_TOKEN", user.data.access_token)
 					this.$TOOL.data.set("USER_INFO", user.data.user_info)
 				}else{
 					this.islogin = false
